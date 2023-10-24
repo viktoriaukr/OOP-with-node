@@ -3,7 +3,11 @@ content %} {% if results and results|length > 0 %}
 <h2>Search Results for "{{ lastName }}".</h2>
 <ul>
   {% for customer in results %}
-  <li>{{ customer.lastName }}</li>
+  <li>
+    <a href="/{{ customer.id }}/"
+      >{{ customer.first_name }} {{ customer.last_name }}</a
+    >
+  </li>
   {% endfor %}
 </ul>
 {% else %}

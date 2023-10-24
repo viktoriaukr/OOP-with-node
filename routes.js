@@ -9,7 +9,7 @@ const router = new express.Router();
 
 /** Homepage: show list of customers. */
 
-router.post("/search", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const { lastName } = req.body;
     const results = await Customer.search(lastName);

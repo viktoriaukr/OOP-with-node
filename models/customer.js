@@ -55,10 +55,11 @@ class Customer {
 
   static async search(lastName) {
     const results = await db.query(
-      `SELECT * FROM customers WHERE last_name=$1`,
-      [lastName]
+      `SELECT * FROM customers WHERE last_name ILIKE $1`,
+      [`%${lastName}%`]
     );
-    return results.rows;
+    const customers = results.rows;
+    return customers;
   }
 
   get fullName() {
