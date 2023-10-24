@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block title %}Search page{% endblock %} {% block
+content %} {% if results and results|length > 0 %}
+<h2>Search Results for "{{ lastName }}".</h2>
+<ul>
+  {% for customer in results %}
+  <li>{{ customer.lastName }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No results found for "{{ lastName }}".</p>
+{% endif %} {% endblock %}
