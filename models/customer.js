@@ -59,7 +59,24 @@ class Customer {
       [`%${lastName}%`]
     );
     const customers = results.rows;
+    if (customers === undefined || customers.length === 0) {
+      const err = new Error(`No such customer: ${id}`);
+      err.status = 404;
+      throw err;
+    }
     return customers;
+  }
+
+  static async mostFrequent() {
+    const results = await db.query(
+      `SELECT id, first_name, last_name, COUNT(*) AS frequency 
+      FROM customers 
+      GROUP BY first_name, last_name, id 
+      ORDER BY frequency DESC 
+      LIMIT 10`
+    );
+    console.log(results.rows);
+    return results.rows;
   }
 
   get fullName() {

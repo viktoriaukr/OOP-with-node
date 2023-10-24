@@ -26,6 +26,14 @@ router.get("/", async function (req, res, next) {
     return next(err);
   }
 });
+router.get("/customers", async function (req, res, next) {
+  try {
+    const customers = await Customer.mostFrequent();
+    return res.render("customer_best.html", { customers });
+  } catch (error) {
+    return next(error);
+  }
+});
 
 /** Form to add a new customer. */
 
